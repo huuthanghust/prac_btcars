@@ -1,0 +1,45 @@
+
+<div>
+    <h2><span>Orderlist</span> {{vm.orderlist.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Firstname</span></dt>
+        <dd>
+            <span>{{vm.orderlist.firstname}}</span>
+        </dd>
+        <dt><span>Lastname</span></dt>
+        <dd>
+            <span>{{vm.orderlist.lastname}}</span>
+        </dd>
+        <dt><span>Address</span></dt>
+        <dd>
+            <span>{{vm.orderlist.address}}</span>
+        </dd>
+        <dt><span>Phonenumber</span></dt>
+        <dd>
+            <span>{{vm.orderlist.phonenumber}}</span>
+        </dd>
+        <dt><span>Total</span></dt>
+        <dd>
+            <span>{{vm.orderlist.total}}</span>
+        </dd>
+        <dt><span>Car</span></dt>
+        <dd>
+            <span ng-repeat="car in vm.orderlist.cars">
+                <a ui-sref="car-detail({id: car.id})">{{car.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="orderlist-detail.edit({id:vm.orderlist.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

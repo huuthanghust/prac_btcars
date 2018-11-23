@@ -1,0 +1,19 @@
+version: '2'
+services:
+    pra_btcars-app:
+        image: pra_btcars
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://pra_btcars-mysql:3306/pra_btcars?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=pra_btcars-elasticsearch:9300
+        ports:
+            - 8080:8080
+    pra_btcars-mysql:
+        extends:
+            file: mysql.yml
+            service: pra_btcars-mysql
+    pra_btcars-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: pra_btcars-elasticsearch

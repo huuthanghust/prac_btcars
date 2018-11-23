@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "customer",
+            "relationshipName": "car",
+            "otherEntityName": "car",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20181113111211",
+    "entityTableName": "customer",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}
