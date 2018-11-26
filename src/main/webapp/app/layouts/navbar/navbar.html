@@ -1,168 +1,254 @@
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" ng-click="vm.toggleNavbar()">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand logo" href="#/" ng-click="vm.collapseNavbar()">
-                <img class="logo-img" src="content/images/logo-jhipster.png" alt="logo"/>
-                <span>Pra_btcars</span> <span class="navbar-version">v{{VERSION}}</span>
+<div class="col-sm-12">
+    <nav class="navbar navbar-default nav-top" role="navigation">
+        <div class="head hidden-sm hidden-md hidden-lg">
+            <a ui-sref="home">
+                <span class="title">BT CARS</span>
             </a>
+            <button type="button" class="navbar-toggle" ng-click="vm.toggleNavbar()">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+          </button>
         </div>
+
         <div class="navbar-collapse" uib-collapse="vm.isNavbarCollapsed" ng-switch="vm.isAuthenticated()">
-            <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active">
-                    <a ui-sref="home" ng-click="vm.collapseNavbar()">
-                        <span class="glyphicon glyphicon-home"></span>
-                        <span class="hidden-sm">Home</span>
-                    </a>
-                </li>
-                <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-                <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown class="dropdown pointer">
-                    <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
-                        <span>
-                            <span class="glyphicon glyphicon-th-list"></span>
-                            <span class="hidden-sm">
-                                Entities
-                            </span>
-                            <b class="caret"></b>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu" uib-dropdown-menu>
-                        <li ui-sref-active="active">
-                                <a ui-sref="car" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Car</span>
-                                </a>
-                            </li>
-                        <li ui-sref-active="active">
-                                <a ui-sref="customer" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Customer</span>
-                                </a>
-                            </li>
-                        <li ui-sref-active="active">
-                                <a ui-sref="orderlist" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Orderlist</span>
-                                </a>
-                            </li>
-                        <li ui-sref-active="active">
-                                <a ui-sref="recommend" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Recommend</span>
-                                </a>
-                            </li>
-                        <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
-                    </ul>
-                </li>
-                <li ng-class="{active: vm.$state.includes('account')}" uib-dropdown class="dropdown pointer">
-                    <a class="dropdown-toggle" uib-dropdown-toggle href="" id="account-menu">
-                        <span>
-                            <span class="glyphicon glyphicon-user"></span>
-                            <span class="hidden-sm">
-                                Account
-                            </span>
-                            <b class="caret"></b>
-                        </span>
+            <ul class="nav navbar-nav navbar-left">
+                <li ng-class="{active: vm.$state.includes('account')}" uib-dropdown-toggle href="" uib-dropdown class="dropdown pointer">
+                    <a class="dropdown-toggle" id="account-menu">
+                        <span>My Account</span>
+                        <b class="caret" ng-switch-when="true"></b>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="settings" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-wrench"></span>&nbsp;
                                 <span>Settings</span>
                             </a>
                         </li>
                         <li ui-sref-active="active" ng-switch-when="true">
-                            <a ui-sref="password" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-lock"></span>&nbsp;
-                                <span>Password</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="sessions" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-cloud"></span>&nbsp;
                                 <span>Sessions</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" ng-switch-when="true">
-                            <a href="" ng-click="vm.logout()" id="logout">
-                                <span class="glyphicon glyphicon-log-out"></span>&nbsp;
-                                <span>Sign out</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" ng-switch-when="false">
-                            <a href="" ng-click="vm.login()" id="login">
-                                <span class="glyphicon glyphicon-log-in"></span>&nbsp;
-                                <span>Sign in</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" ng-switch-when="false">
-                            <a ui-sref="register" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;
-                                <span>Register</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li ng-class="{active: vm.$state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" uib-dropdown class="dropdown pointer">
-                    <a class="dropdown-toggle" uib-dropdown-toggle href="" id="admin-menu">
+                <li ng-class="{active: vm.$state.includes('admin')}" uib-dropdown-toggle href="" ng-switch-when="true" has-authority="ROLE_ADMIN" uib-dropdown class="dropdown pointer">
+                    <a class="dropdown-toggle" id="admin-menu">
                         <span>
-                            <span class="glyphicon glyphicon-tower"></span>
-                            <span class="hidden-sm">Administration</span>
-                            <b class="caret"></b>
+                      <span>Administration</span>
+                        <b class="caret"></b>
                         </span>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
                         <li ui-sref-active="active">
                             <a ui-sref="user-management" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-user"></span>&nbsp;
                                 <span>User management</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">
+                            <a ui-sref="elasticsearch-reindex" ng-click="vm.collapseNavbar()">
+                                <span>ElasticSearch Reindex</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" class="dropdown-hover">
+                            <a>
+                                <span>Entities</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li ui-sref-active="active">
+                                    <a ui-sref="car" ng-click="vm.collapseNavbar()">
+                                        <span>Car</span>
+                                    </a>
+                                </li>
+                                <li ui-sref-active="active">
+                                    <a ui-sref="customer" ng-click="vm.collapseNavbar()">
+                                        <span>Customer</span>
+                                    </a>
+                                </li>
+                                <li ui-sref-active="active">
+                                    <a ui-sref="orderlist" ng-click="vm.collapseNavbar()">
+                                        <span>Order</span>
+                                    </a>
+                                </li>
+                                <li ui-sref-active="active">
+                                    <a ui-sref="recommend" ng-click="vm.collapseNavbar()">
+                                        <span>Recommend</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li ui-sref-active="active">
                             <a ui-sref="jhi-metrics" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-dashboard"></span>&nbsp;
                                 <span>Metrics</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">
                             <a ui-sref="jhi-health" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-heart"></span>&nbsp;
                                 <span>Health</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">
                             <a ui-sref="jhi-configuration" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-list-alt"></span>&nbsp;
                                 <span>Configuration</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">
                             <a ui-sref="audits" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-bell"></span>&nbsp;
                                 <span>Audits</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">
                             <a ui-sref="logs" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-tasks"></span>&nbsp;
                                 <span>Logs</span>
                             </a>
                         </li>
                         <li ng-show="vm.swaggerEnabled" ui-sref-active="active">
                             <a ui-sref="docs" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-book"></span>&nbsp;
                                 <span>API</span>
                             </a>
                         </li>
                         <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
                     </ul>
                 </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="contacts">
+                        <span>Contacts</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="about">
+                        <span>About us</span>
+                    </a>
+                </li>
+                <li ng-class="{active: vm.$state.includes('account')}">
+                    <a ui-sref="register" ng-switch-when="false" ng-click="vm.collapseNavbar()">
+                   Register
+                </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-class="{active: vm.$state.includes('account')}">
+                <li ui-sref-active="active" ng-switch-when="false" ng-click="vm.login()" id="login">
+                    <a href="">
+                        <i class="fa fa-sign-in"></i> Login
+                    </a>
+                </li>
+                <li ng-switch-when="true" ng-click="vm.logout()" id="logout">
+                    <a href="">
+                        <i class="fa fa-sign-out"></i> Sign out
+                    </a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </nav>
+    <div class="row nav-middle">
+        <a ui-sref="home">
+            <div class="col-sm-4 logo">
+                <img class="img-responsive" ng-src="/content/images/logo-btcars.png" alt="">
+            </div>
+        </a>
+
+        <div class="col-sm-4 worktime">
+            <div class="phone">
+                (043)666.6789
+            </div>
+            <div class="time">
+                Monday - Saturday: 8am - 5pm PST
+            </div>
+        </div>
+
+        <div class="col-sm-4 mini-nav">
+            <div>
+                <div class="mini-nav-item cart" ng-click="vm.openCart()">
+                    <a class="nav-cart"><i class="fa fa-shopping-cart"></i></a>
+                    <span class="navquantity">{{ vm.$storage.customer.cars.length }}</span>
+                </div>
+                <div class="mini-nav-item total">
+                    <a class="nav-total"><i class="fa fa-usd"></i></a>
+                    <span class="navtotal"> ${{ vm.$storage.totalFix }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
+    <nav class="navbar navbar-default mainmenu" role="navigation">
+        <div class="head hidden-sm hidden-md hidden-lg">
+            <a ui-sref="home">
+                <span class="title">BT CARS</span>
+            </a>
+            <button type="button" class="navbar-toggle" ng-click="vm.toggleMenu()">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <div class="navbar-collapse" uib-collapse="vm.isMenuCollapsed" ng-switch="vm.isAuthenticated()">
+            <ul class="nav navbar-nav">
+                <li class="mainmenu-item mainmenu-home" ng-class="{'search-enable': vm.isSearchEnable}">
+                    <a ui-sref="home" ng-click="vm.collapseMenu()">
+                        <i class="fa fa-home hidden-sm hidden-md hidden-lg"></i>
+                        <span>Home</span>
+                        <span class="icon hidden-xs hidden-sm">
+                      <i class="fa fa-home"></i>
+                   </span>
+                    </a>
+                </li>
+                <li class="mainmenu-item mainmenu-all" ng-class="{'search-enable': vm.isSearchEnable}">
+                    <a ui-sref="all" ng-click="vm.collapseMenu()">
+                        <i class="fa fa-car hidden-sm hidden-md hidden-lg"></i>
+                        <span>All Cars</span>
+                        <span class="icon hidden-xs hidden-sm">
+                      <i class="fa fa-car"></i>
+                   </span>
+                    </a>
+                </li>
+                <li class="mainmenu-item mainmenu-contacts" ng-class="{'search-enable': vm.isSearchEnable}">
+                    <a ui-sref="contacts" ng-click="vm.collapseMenu()">
+                        <i class="fa fa-map-marker hidden-sm hidden-md hidden-lg"></i>
+                        <span>Contacts</span>
+                        <span class="icon hidden-xs hidden-sm">
+                      <i class="fa fa-map-marker"></i>
+                   </span>
+                    </a>
+                </li>
+                <li class="mainmenu-item mainmenu-about" ng-class="{'search-enable': vm.isSearchEnable}">
+                    <a ui-sref="about" ng-click="vm.collapseMenu()">
+                        <i class="fa fa-question hidden-sm hidden-md hidden-lg"></i>
+                        <span>About us</span>
+                        <span class="icon hidden-xs hidden-sm">
+                      <i class="fa fa-question"></i>
+                   </span>
+                    </a>
+                </li>
+                <li class="mainmenu-item mainmenu-search" ng-class="{'search-enable': vm.isSearchEnable}">
+                    <a class="search-wrap" ng-click="vm.enableSearch()">
+                        <i class="fa fa-search hidden-sm hidden-md hidden-lg"></i>
+                        <span>Search</span>
+                        <span class="icon hidden-xs hidden-sm">
+                      <i class="fa fa-search"></i>
+                   </span>
+                    </a>
+                    <a class="searchbar">
+                        <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" ng-model="vm.searchQuery" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button" ng-click="vm.search()">
+                               <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                            <button class="btn btn-info btn-lg" type="button">
+                               <i class="fa fa-times" ng-click="vm.disableSearch()"></i>
+                            </button>
+                         </span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
             </ul>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>

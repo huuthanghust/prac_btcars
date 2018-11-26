@@ -1,41 +1,106 @@
-<div ng-cloak>
-    <div class="row">
-        <div class="col-md-4">
-            <span class="hipster img-responsive img-rounded"></span>
+<div class="col-sm-12">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Home</li>
+    </ol>
+</div>
+<div>
+    <div class="car-container car-container-home">
+        <div class="car-container-title">
+            new cars
         </div>
-        <div class="col-md-8">
-            <h1>Welcome, Java Hipster!</h1>
-            <p class="lead">This is your homepage</p>
-
-            <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true">
-                    You are logged in as user "{{vm.account.login}}".
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false">
-                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false">
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
+        <div class="car-container-body">
+            <div class="col-sm-4 car-item-wrap car-item-wrap-3" ng-repeat="car in vm.new">
+                <div class="car-item">
+                    <div class="car-img">
+                        <img class="img-responsive" ng-src="content/images/cars/{{ car.id }}/1.jpg" alt="">
+                    </div>
+                    <div class="car-info">
+                        <div>
+                            <a ui-sref="detail({id:{{ car.id }}})">
+                                <span>{{ car.make }}<span>
+                           <span>{{ car.model }}<span>
+                        </a>
+                     </div>
+                     <div>{{ car.year }}</div>
+                     <div class="price">${{ car.price }}</div>
+                  </div>
+                  <div class="car-buy">
+                     <div class="col-sm-2 status status-instock" data-toggle="tooltip" title="IN STOCK"
+                              ng-show="(car.status == 1) && ((car.quantity - car.sold) != 0)">
+                           <i class="fa fa-check"></i>
+                     </div>
+                     <div class="col-sm-2 status status-outofstock" data-toggle="tooltip" title="OUT OF STOCK"
+                              ng-show="(car.status == 1) && ((car.quantity - car.sold) == 0)">
+                        <i class="fa fa-exclamation"></i>
+                     </div>
+                     <div class="col-sm-2 status status-suspended" data-toggle="tooltip" title="SUSPENDED TRADING"
+                              ng-show="(car.status == 0)">
+                        <i class="fa fa-times"></i>
+                     </div>
+                     <div role="button" class="col-sm-5 buy-now" ng-click="vm.buy(car)"
+                              ng-disabled="(car.status == 0) || ((car.quantity - car.sold) == 0)">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span>Buy</span>
+                        </div>
+                        <div role="button" class="col-sm-5 add-to-cart" ng-click="vm.addItem(car)" ng-disabled="(car.status == 0) || ((car.quantity - car.sold) == 0)">
+                            <i class="fa fa-cart-plus"></i>
+                            <span>Cart</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
             </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
 
-            <p>
-                If you have any question on JHipster:
-            </p>
-
-            <ul>
-                <li><a href="http://jhipster.github.io/" target="_blank">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank" >follow @java_hipster on Twitter</a></li>
-            </ul>
-
-            <p>
-             <span>If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank">Github</a>!
-            </p>
+    <div class="car-container car-container-home">
+        <div class="car-container-title">
+            random cars
+        </div>
+        <div class="car-container-body">
+            <div class="col-sm-4 car-item-wrap car-item-wrap-3" ng-repeat="car in vm.random">
+                <div class="car-item">
+                    <div class="car-img">
+                        <img class="img-responsive" ng-src="content/images/cars/{{ car.id }}/1.jpg" alt="">
+                    </div>
+                    <div class="car-info">
+                        <div>
+                            <a ui-sref="detail({id:{{ car.id }}})">
+                                <span>{{ car.make }}<span>
+                           <span>{{ car.model }}<span>
+                        </a>
+                     </div>
+                     <div>{{ car.year }}</div>
+                     <div class="price">${{ car.price }}</div>
+                  </div>
+                  <div class="car-buy">
+                     <div class="col-sm-2 status status-instock" data-toggle="tooltip" title="IN STOCK"
+                              ng-show="(car.status == 1) && ((car.quantity - car.sold) != 0)">
+                           <i class="fa fa-check"></i>
+                     </div>
+                     <div class="col-sm-2 status status-outofstock" data-toggle="tooltip" title="OUT OF STOCK"
+                              ng-show="(car.status == 1) && ((car.quantity - car.sold) == 0)">
+                        <i class="fa fa-exclamation"></i>
+                     </div>
+                     <div class="col-sm-2 status status-suspended" data-toggle="tooltip" title="SUSPENDED TRADING"
+                              ng-show="(car.status == 0)">
+                        <i class="fa fa-times"></i>
+                     </div>
+                     <div role="button" class="col-sm-5 buy-now" ng-click="vm.buy(car)"
+                              ng-disabled="(car.status == 0) || ((car.quantity - car.sold) == 0)">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span>Buy</span>
+                        </div>
+                        <div role="button" class="col-sm-5 add-to-cart" ng-click="vm.addItem(car)" ng-disabled="(car.status == 0) || ((car.quantity - car.sold) == 0)">
+                            <i class="fa fa-cart-plus"></i>
+                            <span>Cart</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
         </div>
     </div>
 </div>
