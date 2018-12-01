@@ -1,23 +1,25 @@
-(function(){
-	'use strict';
-	angular
-	.module('praBtcarsApp')
-	.config(['$stateProvider', function config($stateProvider){
-		$stateProvider.state('about', {
-			parent: 'app',
-			url: '/about',
-			data: {
-				authorities: [],
-				pageTitle: 'About us'
-			},
-			views: {
-				'content@': {
-					templateUrl: 'app/info/about.html'
-				}
-			}
-		});
-	}
-	]);
-}
-})();
+(function() {
+    'use strict';
 
+    angular
+        .module('praBtcarsApp')
+        .config(stateConfig);
+
+    stateConfig.$inject = ['$stateProvider'];
+
+    function stateConfig($stateProvider) {
+        $stateProvider.state('about', {
+            parent: 'app',
+            url: '/about',
+            data: {
+                authorities: [],
+                pageTitle: 'About us ・ BT Cars'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/info/about.html'
+                }
+            }
+        });
+    }
+})();
