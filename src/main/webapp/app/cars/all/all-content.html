@@ -1,7 +1,4 @@
 <div class="car-container">
-   <div class="car-container-title">
-      {{ vm.cars[0].make }}
-   </div>
    <div class="car-container-body">
       <div class="col-sm-6 car-item-wrap car-item-wrap-2"
                ng-repeat="car in vm.cars ">
@@ -17,7 +14,7 @@
                   </a>
                </div>
                <div>{{ car.year }}</div>
-               <div class="price">${{ car.priceFix }}</div>
+               <div class="price">${{ car.price}}</div>
             </div>
             <div class="car-buy">
                <div class="col-sm-2 status status-instock" data-toggle="tooltip" title="IN STOCK"

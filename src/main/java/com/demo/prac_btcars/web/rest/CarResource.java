@@ -35,7 +35,7 @@ public class CarResource {
     private final Logger log = LoggerFactory.getLogger(CarResource.class);
 
     private static final String ENTITY_NAME = "car";
-        
+
     private final CarRepository carRepository;
 
     private final CarSearchRepository carSearchRepository;
@@ -138,7 +138,7 @@ public class CarResource {
      * SEARCH  /_search/cars?query=:query : search for the car corresponding
      * to the query.
      *
-     * @param query the query of the car search 
+     * @param query the query of the car search
      * @return the result of the search
      */
     @GetMapping("/_search/cars")
@@ -149,7 +149,7 @@ public class CarResource {
             .stream(carSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
-    
+
     @GetMapping(value = "/cars", params = "company")
     @Timed
     public ResponseEntity<List<Car>> getCompanyCars(@RequestParam String company) {
@@ -161,9 +161,9 @@ public class CarResource {
         make = "Porsche";
         else if (company.equals("ferrari"))
         make = "Ferrari";
-        else if (company.equals("rollroyce"))
+        else if (company.equals("rollsroyce"))
         make = "Rolls-Royce";
-        else 
+        else
         return new ResponseEntity<List<Car>> (HttpStatus.NOT_FOUND);
         List<Car> cars = carRepository.findByMake(make);
         return new ResponseEntity<List<Car>> (cars,HttpStatus.OK);
@@ -180,7 +180,7 @@ public class CarResource {
         cars = carRepository.findTop3ByOrderByIdDesc();
         else if(category.equals("random"))
         cars = carRepository.findTop3Rand();
-        else 
+        else
         return new ResponseEntity<List<Car>> (HttpStatus.NOT_FOUND);
         return new ResponseEntity<List<Car>> (cars, HttpStatus.OK);
     }

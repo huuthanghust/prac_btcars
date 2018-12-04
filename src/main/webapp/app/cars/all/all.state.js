@@ -9,7 +9,7 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('companyParent', {
+        .state('allParent', {
             parent: 'app',
             abstract: true,
             data: {
@@ -20,29 +20,29 @@
                 'content@': {
                     templateUrl: 'app/cars/mutual/mutual.html',
                 },
-                'sidebar@companyParent': {
+                'sidebar@allParent': {
                     templateUrl: 'app/cars/mutual/mutual-sidebar.html',
                 }
             }
         })
-        .state('company', {
-            parent: 'companyParent',
-            url: '/company/:company',
+        .state('all', {
+            parent: 'allParent',
+            url: '/cars',
             views: {
-                'content@companyParent': {
-                    templateUrl: 'app/cars/company/company-content.html',
-                    controller: 'CompanyContentController',
+                'content@allParent': {
+                    templateUrl: 'app/cars/all/all-content.html',
+                    controller: 'AllContentController',
                     controllerAs: 'vm'
                 },
-                'title@companyParent': {
-                    templateUrl: 'app/cars/company/company-title.html',
-                    controller: 'CompanyTitleController',
+                'title@allParent': {
+                    templateUrl: 'app/cars/all/all-title.html',
+                    controller: 'AllTitleController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
-                cars: function (Car, $stateParams, $q) {
-                    let cars = Car.query({ company: $stateParams.company });
+                cars: function (Car, $q) {
+                    let cars = Car.query();
                     return $q.resolve(cars.$promise).then(function (result) {
                         return result;
                     });
